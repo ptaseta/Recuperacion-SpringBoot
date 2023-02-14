@@ -16,7 +16,7 @@ public class Letra {
     public void setLetra(char letra) {
         this.letra = letra;
     }
-
+    
     public int getCasillaCorrecta() {
         return casillaCorrecta;
     }
@@ -25,4 +25,5 @@ public class Letra {
         this.casillaCorrecta = casillaCorrecta;
     }
 
+    
 }
