@@ -4,10 +4,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Letra {
+
     private char letra;
     private int casillaCorrecta;
 
-    public Letra(boolean correcto, char letra, int casilla, int casillaCorrecta) {
+    public Letra() {
+    }
+
+    public Letra(char letra, int casillaCorrecta) {
         this.letra = letra;
         this.casillaCorrecta = casillaCorrecta;
     }

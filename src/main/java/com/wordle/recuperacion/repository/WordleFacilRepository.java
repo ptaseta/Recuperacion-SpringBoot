@@ -1,9 +1,9 @@
 package com.wordle.recuperacion.repository;
-import org.springframework.context.annotation.Profile;
+
 import org.springframework.stereotype.Repository;
 
 
-@Profile("facil")
+
 @Repository
 public class WordleFacilRepository {
     private String[] palabra = {"o", "l", "a"};
@@ -29,6 +29,7 @@ public class WordleFacilRepository {
     }
     public int getIntentos() {
         return intentos;
+        
     }
     public void setIntentos(int intentos) {
         this.intentos = intentos;
