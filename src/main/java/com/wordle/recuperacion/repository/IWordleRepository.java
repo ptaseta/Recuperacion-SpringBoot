@@ -1,11 +1,12 @@
 package com.wordle.recuperacion.repository;
-
-import java.util.ArrayList;
+import java.util.List;
 import com.wordle.recuperacion.models.Letra;
 
 public interface IWordleRepository {
-    public ArrayList<String> getPalabra();
-    public int getIntentos();
-    public void subtractOnePalabrasIntentada();
-    ArrayList<Letra> getLetras();
+    char[] getPalabra();
+    void setPalabra(char[] palabra);
+    List<Letra> getPalabrasIntentada();
+    void setPalabrasIntentada(List<Letra> palabrasIntentada);
+    int getIntentos();
+    void setIntentos(int intentos);
 }

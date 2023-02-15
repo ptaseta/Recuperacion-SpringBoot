@@ -1,36 +1,44 @@
 package com.wordle.recuperacion.repository;
 
+import java.util.List;
+import java.util.ArrayList;
+import com.wordle.recuperacion.models.Letra;
 import org.springframework.stereotype.Repository;
 
 
 
 @Repository
-public class WordleFacilRepository {
-    private String[] palabra = {"o", "l", "a"};
-    private String[] palabrasIntentada = new String[3];
+public class WordleFacilRepository implements IWordleRepository{
+    private char[] palabra = {'o', 'l', 'a'};
+    private List<Letra> palabrasIntentada = new ArrayList<Letra>();
     private int intentos = 20;
 
-    public WordleFacilRepository() {
-        for (int i = 0+1; i < palabrasIntentada.length; i++) {
-            palabrasIntentada[i] = "Aun le quedan " + intentos-- + " intentos";
-        } 
-    }
-    public String[] getPalabra() {
+    @Override
+    public char[] getPalabra() {
         return palabra;
     }
-    public void setPalabra(String[] palabra) {
+
+    @Override
+    public void setPalabra(char[] palabra) {
         this.palabra = palabra;
     }
-    public String[] getPalabrasIntentada() {
+
+    @Override
+    public List<Letra> getPalabrasIntentada() {
         return palabrasIntentada;
     }
-    public void setPalabrasIntentada(String[] palabrasIntentada) {
+
+    @Override
+    public void setPalabrasIntentada(List<Letra> palabrasIntentada) {
         this.palabrasIntentada = palabrasIntentada;
     }
+
+    @Override
     public int getIntentos() {
         return intentos;
-        
     }
+
+    @Override
     public void setIntentos(int intentos) {
         this.intentos = intentos;
     }
