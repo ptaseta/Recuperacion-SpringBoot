@@ -21,7 +21,7 @@ public class WordleService implements IWordleService{
     public Letra[] StringToLetra(String palabra) {
         Letra[] letras = new Letra[palabra.length()];
         for (int i = 0; i < palabra.length(); i++) {
-            letras[i] = new Letra(palabra.charAt(i), 0);
+            letras[i] = new Letra(palabra.charAt(i), 3, -1);
         }
         return letras;
     }
@@ -34,6 +34,38 @@ public class WordleService implements IWordleService{
     @Override
     public List<Letra[]> getPalabrasIntentada() {
         return wordleRepository.getPalabrasIntentada();
+    }
+
+    @Override
+    public void checkLetra(Letra[] palabraIntentada, char[] palabra){
+        
+        for (int i = 0; i < palabraIntentada.length; i++) {
+            if (palabraIntentada[i].getLetra() == palabra[i]) {
+                palabraIntentada[i].setCasillaCorrecta(0); 
+                palabraIntentada[i].setCasillaActual(i);
+            }
+        }
+        for (int i = 0; i < palabraIntentada.length; i++) {
+            for (int j = 0; j < palabra.length; j++) {
+                if (palabraIntentada[i].getLetra() == palabra[j]
+                        && palabraIntentada[j].getCasillaCorrecta() != 0
+                        && palabraIntentada[i].getCasillaCorrecta() != 0) {
+                            boolean isRepeated = false;
+                            for (int k = 0; k < i; k++) {
+                                if (palabraIntentada[k].getCasillaActual() == j) {
+                                    isRepeated = true;
+                                }
+                            }
+                            if (!isRepeated) {
+                                palabraIntentada[i].setCasillaCorrecta(1);
+                                palabraIntentada[i].setCasillaActual(j);
+                            }
+                }
+            }
+            if (palabraIntentada[i].getCasillaCorrecta() >2 ) {
+                palabraIntentada[i].setCasillaCorrecta(2);
+            }
+        }
     }
 
 }

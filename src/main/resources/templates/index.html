@@ -15,7 +15,7 @@
     </head>
     <body>
         <div class="container-fluid" style="height: 100%;" >
-            <div class="row h-75 gap-5" style="background-color:aquamarine ;">
+            <div class="row h-75 gap-5">
                 <div style="height: 100px ;  padding-inline: 10px;">WORDLE</div>
                 <form class="form-inline my-2 my-lg-0" th:action="@{/}" th:object="${word}" method="POST"> 
                     <div class="d-flex">
@@ -26,13 +26,18 @@
                   </form>
 
             </div>
-            <div class="row" style=" background-color: coral;">
+            <div class="row">
                 <div class="col" >
                     <div class="row" th:each="word : ${tries_anteriores}">
-                        <div class="col" th:each="letra : ${word}" th:text="${letra.letra}"></div> <!--el primer letra es nombre de th:each y el segundo es el nombre de variable char de la clase Letra(model)-->
+                        <div class="col" th:each="letra : ${word}">
+                            <div th:switch="${letra.casillaCorrecta}" class="card" style="width: 3rem; height: 3rem; margin: 5px; display: inline-block;">
+                                <div th:case="0" class="card-body bg-success" th:text="${letra.letra}"></div><!--el primer letra es nombre de th:each y el segundo es el nombre de variable char de la clase Letra(model)-->
+                                <div th:case="1" class="card-body bg-warning" th:text="${letra.letra}"></div>
+                                <div th:case="2" class="card-body bg-danger" th:text="${letra.letra}"></div>
+                            </div>
+                        </div> 
                     </div>
                 </div>
-                
             </div>
         </div>  
     </body>

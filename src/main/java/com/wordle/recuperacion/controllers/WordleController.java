@@ -24,6 +24,7 @@ public class WordleController {
     public ModelAndView index(ModelAndView mv, @ModelAttribute("word") String word){
         mv.setViewName("index");
         Letra[] letras = wordleService.StringToLetra(word);
+        wordleService.checkLetra(letras, wordleService.getPalabra());
         wordleService.addPalabraIntentada(letras);
         mv.addObject("tries_anteriores", wordleService.getPalabrasIntentada());
         return mv;

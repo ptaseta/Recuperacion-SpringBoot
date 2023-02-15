@@ -8,4 +8,5 @@ public interface IWordleService {
     Letra[] StringToLetra(String palabra);
     void addPalabraIntentada(Letra[] palabraIntentada);
     List<Letra[]> getPalabrasIntentada();
+    void checkLetra(Letra[] palabraIntentada, char[] palabra);
 }
