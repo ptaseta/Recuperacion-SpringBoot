@@ -17,18 +17,20 @@
         <div class="container-fluid" style="height: 100%;" >
             <div class="row h-75 gap-5" style="background-color:aquamarine ;">
                 <div style="height: 100px ;  padding-inline: 10px;">WORDLE</div>
-                <form class="form-inline my-2 my-lg-0">
+                <form class="form-inline my-2 my-lg-0" th:action="@{/}" th:object="${word}" method="POST"> 
                     <div class="d-flex">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search" style="width: 200px; margin-right: 10px;">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        <input class="form-control" name="word" type="text" placeholder="Escribe una palabra" style="width: 200px; margin-right: 10px;">
+                        <input type="submit" class="btn btn-outline-success" value="Add" style="margin-right: 10px;">
                     </div>
                     
                   </form>
 
             </div>
             <div class="row" style=" background-color: coral;">
-                <div class="col">
-
+                <div class="col" >
+                    <div class="row" th:each="word : ${tries_anteriores}">
+                        <div class="col" th:each="letra : ${word}" th:text="${letra.letra}"></div> <!--el primer letra es nombre de th:each y el segundo es el nombre de variable char de la clase Letra(model)-->
+                    </div>
                 </div>
                 
             </div>

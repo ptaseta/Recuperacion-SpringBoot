@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class WordleFacilRepository implements IWordleRepository{
     private char[] palabra = {'o', 'l', 'a'};
-    private List<Letra> palabrasIntentada = new ArrayList<Letra>();
+    private List<Letra[]> palabrasIntentada = new ArrayList<Letra[]>();
     private int intentos = 20;
 
     @Override
@@ -24,12 +24,17 @@ public class WordleFacilRepository implements IWordleRepository{
     }
 
     @Override
-    public List<Letra> getPalabrasIntentada() {
+    public List<Letra[]> getPalabrasIntentada() {
         return palabrasIntentada;
     }
 
     @Override
-    public void setPalabrasIntentada(List<Letra> palabrasIntentada) {
+    public void addPalabraIntentada(Letra[] palabraIntentada) {
+        this.palabrasIntentada.add(palabraIntentada);
+    }
+
+    @Override
+    public void setPalabrasIntentada(List<Letra[]> palabrasIntentada) {
         this.palabrasIntentada = palabrasIntentada;
     }
 
