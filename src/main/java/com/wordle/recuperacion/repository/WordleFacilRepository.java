@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class WordleFacilRepository implements IWordleRepository{
-    private char[] palabra = {'o', 'l', 'a'};
+    private char[] palabra = {'O', 'L', 'A'};
     private List<Letra[]> palabrasIntentada = new ArrayList<Letra[]>();
     private int intentos = 20;
 

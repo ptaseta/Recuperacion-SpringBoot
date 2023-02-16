@@ -3,8 +3,10 @@ package com.wordle.recuperacion.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.wordle.recuperacion.repository.IWordleRepository;
-import java.util.List;
+
 import com.wordle.recuperacion.models.Letra;
+import java.util.List;
+import java.awt.Font;
 
 @Service
 public class WordleService implements IWordleService{
@@ -18,14 +20,15 @@ public class WordleService implements IWordleService{
     }
 
     @Override
+  
     public Letra[] StringToLetra(String palabra) {
+        Font timesNewRoman = new Font("Times New Roman", Font.PLAIN, 12);
         Letra[] letras = new Letra[palabra.length()];
         for (int i = 0; i < palabra.length(); i++) {
-            letras[i] = new Letra(palabra.charAt(i), 3, -1);
+            letras[i] = new Letra(Character.toUpperCase(palabra.charAt(i)), 3, -1, timesNewRoman);
         }
         return letras;
     }
-
     @Override
     public void addPalabraIntentada(Letra[] palabraIntentada) {
         wordleRepository.addPalabraIntentada(palabraIntentada);
