@@ -36,4 +36,11 @@ public class WordleController {
         mv.addObject("palabra", wordleService.getPalabra());
         return mv;
     }
+
+    @GetMapping("/buscador")
+    public ModelAndView buscador(ModelAndView mv) {
+        mv.setViewName("buscador");
+        mv.addObject("palabra", wordleService.getPalabra());
+        return mv;
+    }
 }
