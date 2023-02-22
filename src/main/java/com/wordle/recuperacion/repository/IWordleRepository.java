@@ -10,4 +10,5 @@ public interface IWordleRepository {
     int getIntentos();
     void setIntentos(int intentos);
     void addPalabraIntentada(Letra[] palabraIntentada);
+    String getPista();
 }

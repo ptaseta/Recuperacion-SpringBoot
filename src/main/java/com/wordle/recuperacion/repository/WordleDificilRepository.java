@@ -12,13 +12,22 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Profile("dificil")
 public class WordleDificilRepository implements IWordleRepository{
-    private char[] palabra = {'L', 'O', 'L','I','L','L','O','S'};
+    private char[] palabra = {'P', 'E', 'T','A','R','D','O','S'};
     private List<Letra[]> palabrasIntentada = new ArrayList<Letra[]>();
     private int intentos = 6;
+    private String pista = "Me encienden con un mechero";
 
     @Override
     public char[] getPalabra() {
         return palabra;
+    }
+
+    public String getPista() {
+        return pista;
+    }
+
+    public void setPista(String pista) {
+        this.pista = pista;
     }
 
     @Override

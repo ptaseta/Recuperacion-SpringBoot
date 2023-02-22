@@ -12,10 +12,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Profile("medio")
 public class WordleMedioRepository implements IWordleRepository{
-    private char[] palabra = {'A','D', 'I', 'O', 'S'};
+    private char[] palabra = {'C','O', 'C', 'H', 'E'};
     private List<Letra[]> palabrasIntentada = new ArrayList<Letra[]>();
     private int intentos = 10;
-
+    private String pista = "Se desplazan conmigo más rápido";
+    
     @Override
     public char[] getPalabra() {
         return palabra;
@@ -49,6 +50,14 @@ public class WordleMedioRepository implements IWordleRepository{
     @Override
     public void setIntentos(int intentos) {
         this.intentos = intentos;
+    }
+
+    public String getPista() {
+        return pista;
+    }
+
+    public void setPista(String pista) {
+        this.pista = pista;
     }
 
 }

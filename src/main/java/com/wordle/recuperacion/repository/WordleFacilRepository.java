@@ -15,6 +15,15 @@ public class WordleFacilRepository implements IWordleRepository{
     private char[] palabra = {'O', 'L', 'A'};
     private List<Letra[]> palabrasIntentada = new ArrayList<Letra[]>();
     private int intentos = 20;
+    private String pista = "Hay un deporte que sin mi no se puede practicar.";
+
+    public String getPista() {
+        return pista;
+    }
+
+    public void setPista(String pista) {
+        this.pista = pista;
+    }
 
     @Override
     public char[] getPalabra() {
