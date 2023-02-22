@@ -13,19 +13,26 @@
 
     <title>index</title>
     </head>
-    <body>
-        <div class="container-fluid" style="height: 100%; background-color: 	whitesmoke  " >
-            <div class="row h-75 gap-5">
-                <div style="height: 100px ;  padding-inline: 10px;">WORDLE</div>
-                <form class="form-inline my-2 my-lg-0" th:action="@{/}" th:object="${word}" method="POST"> 
-                    <div class="d-flex" style="justify-content: center;">
-                        <input class="form-control" name="word" type="text" placeholder="Escribe una palabra" style="width: 200px;">
-                        <input type="submit" class="btn btn-outline-dark" value="Add" style="margin-right: 10px; background-color:#F5B7B1; margin-left: 15px; border-color: #EC7063; color: #C0392B;">
-                    </div>
-                    
-                </form>
+    <body style=" background-color: #E6E6FA ">
+        <div class="container-fluid" style="height: 100%;" >
+            <th:block th:if="${perder}">
+                <h3>perdiste wey</h3>
+            </th:block>
+            <th:block th:unless="${perder}">
 
-            </div>
+                <div class="row h-75 gap-5">
+                    <div style="height: 100px ;  padding-inline: 10px;">WORDLE</div>
+                    <form class="form-inline my-2 my-lg-0" th:action="@{/}" th:object="${word}" method="POST"> 
+                        <div class="d-flex" style="justify-content: center;">
+                            <input class="form-control" name="word" type="text" th:minlength="${palabra}" th:maxlength="${palabra}" placeholder="Escribe una palabra" style="width: 200px;" required>
+                            <!--el minimo y max depende de los caracteres de la solucion correcta que en el Controller pasamos-->
+                            <input type="submit" class="btn btn-outline-dark" value="Add" style="margin-right: 10px; background-color:#F5B7B1; margin-left: 15px; border-color: #EC7063; color: #C0392B;">
+                        </div>
+                        
+                    </form>
+                    
+                </div>
+            </th:block>
                 <div class="col" style="width:33%; margin: 33%; margin-top: 80px; margin-bottom: 50px;">
                     <div class="d-flex" th:each="word : ${tries_anteriores}" style="justify-content: center;">
                         <div th:each="letra : ${word}">
@@ -43,5 +50,6 @@
                         </div>
                     </div>
                 </div>  
+        </div>
     </body>
 </html>

@@ -10,16 +10,7 @@ public class Letra {
     private char letra;
     private int casillaCorrecta;
     private int casillaActual;
-    private Font fuente;
     
-    public Font getFuente() {
-        return fuente;
-    }
-
-    public void setFuente(Font fuente) {
-        this.fuente = fuente;
-    }
-
     public Letra() {
     }
     
@@ -27,7 +18,6 @@ public class Letra {
         this.letra = letra;
         this.casillaCorrecta = casillaCorrecta;
         this.casillaActual = casillaActual;
-        this.fuente = fuente;
     }
     
     public int getCasillaActual() {
