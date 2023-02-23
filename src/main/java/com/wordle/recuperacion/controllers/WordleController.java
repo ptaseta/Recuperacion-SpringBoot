@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class WordleController {
-    
+
     @Autowired
     private IWordleService wordleService;
 
@@ -20,13 +20,13 @@ public class WordleController {
     private IWordleRepository wordleRepository;
 
     @GetMapping("/")
-    public ModelAndView goToIndex(ModelAndView mv){
+    public ModelAndView goToIndex(ModelAndView mv) {
         mv.setViewName("index");
         mv.addObject("tries_anteriores", wordleService.getPalabrasIntentada());
-        mv.addObject("palabra", wordleService.getPalabra().length); //esto le pasamos al min y max del html
+        mv.addObject("palabra", wordleService.getPalabra().length); // esto le pasamos al min y max del html
         mv.addObject("pista", wordleRepository.getPista());
 
-        if (wordleService.getPalabrasIntentada().size()+1 > wordleRepository.getIntentos()) {
+        if (wordleService.getPalabrasIntentada().size() + 1 > wordleRepository.getIntentos()) {
             mv.addObject("perder", true);
         } else {
             mv.addObject("perder", false);
@@ -34,25 +34,36 @@ public class WordleController {
         return mv;
     }
 
-
     @PostMapping("/")
-    public ModelAndView index(ModelAndView mv, @ModelAttribute("word") String word){
+    public ModelAndView index(ModelAndView mv, @ModelAttribute("word") String word) {
         mv.setViewName("index");
         Letra[] letras = wordleService.StringToLetra(word);
         wordleService.checkLetra(letras, wordleService.getPalabra());
         wordleService.addPalabraIntentada(letras);
         mv.addObject("tries_anteriores", wordleService.getPalabrasIntentada());
-        mv.addObject("palabra", wordleService.getPalabra().length); //esto le pasamos al min y max del html
+        mv.addObject("palabra", wordleService.getPalabra().length); // esto le pasamos al min y max del html
         mv.addObject("pista", wordleRepository.getPista());
-
-        if (wordleService.getPalabrasIntentada().size()+1 > wordleRepository.getIntentos()) {
-            mv.addObject("perder", true);
-        } else {
-            mv.addObject("perder", false);
+        boolean victory = false;
+        for (int i = 0; i < wordleService.getPalabrasIntentada()
+                .get(wordleService.getPalabrasIntentada().size() - 1).length; i++) {
+            if (wordleService.getPalabrasIntentada().get(wordleService.getPalabrasIntentada().size() - 1)[i]
+                    .getCasillaCorrecta() == 0) {
+                victory = true;
+            } else {
+                victory = false;
+                break;
+            }
         }
+        if (!victory) {
+            if (wordleService.getPalabrasIntentada().size() + 1 > wordleRepository.getIntentos()) {
+                mv.addObject("perder", true);
+            } else {
+                mv.addObject("perder", false);
+            }
+        }
+        mv.addObject("victoria", victory);
         return mv;
     }
-
 
     @GetMapping("/buscador")
     public ModelAndView buscador(ModelAndView mv) {
@@ -65,7 +76,7 @@ public class WordleController {
     public ModelAndView buscador(ModelAndView mv, @ModelAttribute("intento") int intento) {
         mv.setViewName("buscador");
         mv.addObject("palabras", wordleService.getPalabrasIntentada());
-        mv.addObject("palabra", wordleService.getPalabrasIntentada().get(intento-1));
+        mv.addObject("palabra", wordleService.getPalabrasIntentada().get(intento - 1));
         return mv;
     }
 }
