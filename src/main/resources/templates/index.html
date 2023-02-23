@@ -64,10 +64,20 @@
 <body style=" background-color: #15342f ">
     <div class="container-fluid" style="height: 100%;">
         <th:block th:if="${perder}">
-            <h3>Has perdido, puedes volver a intentarlo si quieres dandole al boton de restart</h3>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Has perdido!</strong> Si quieres volver a jugar dale al boton de Volver a empezar.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                  <!--<span aria-hidden="true">&times;</span>-->
+                </button>
+            </div>
         </th:block>
         <th:block th:if="${victoria}">
-            <h3>Has ganado, puedes volver a jugar si quieres dandole al boton de restart</h3>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Has perdido!</strong> Si quieres volver a jugar dale al boton de Volver a empezar.
+                <button type="button" class="btn-lose" data-bs-dismiss="alert" aria-label="Close">
+                  <!--<span aria-hidden="true">&times;</span>-->
+                </button>
+            </div>
         </th:block>
         <!-- Button trigger modal -->
         <p class="text-end" style="margin-top: 20px; margin-right: 30px;">
@@ -114,7 +124,7 @@
                                 required>
                             <!--el minimo y max depende de los caracteres de la solucion correcta que en el Controller pasamos-->
                             <input type="submit" class="btn btn-outline-dark" value="Add"
-                                style="margin-right: 10px; background-color:#F5B7B1; margin-left: 15px; border-color: #EC7063; color: #C0392B;">
+                                style="margin-right: 10px; background-color:olivedrab; margin-left: 15px; border-color: forestgreen; color: black;">
                         </div>
                     </form>
                 </div>
