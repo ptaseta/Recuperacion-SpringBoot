@@ -5,27 +5,70 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
-  <script th:src="@{/webjars/bootstrap/4.1.3/js/bootstrap.min.js}"></script>
-  <link th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}" rel="stylesheet" />
-  <link th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap-theme.min.css}" rel="stylesheet" />
-  <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <title>Buscador de intentos</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    input[type="number"] {
+      width: 200px;
+      margin-right: 10px;
+    }
+
+    button[type="submit"] {
+      width: 100px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .fa {
+      margin-right: 5px;
+    }
+  </style>
 </head>
 
-<body>
-  <h1>Buscar palabra por el numero de intento</h1>
-  <form action="/buscador" th:object="${intento}" method="post">
-    <!--intento es el mismo nombre que en el post de controller-->
-    <input type="number" name="intento" placeholder="numero de intento" min="1" th:max="${palabras.size()}" style="width: 200px;"/>
-    <input type="submit" value="Buscar" />
-  </form>
-  <div th:if="${palabra != null}">
-    <h2>La palabra es: <span th:each="l : ${palabra}" th:text="${l.letra}"></span></h2>
+<body style="background-color:darkseagreen">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Buscar palabra por el número de intento</h1>
+        <form action="/buscador" th:object="${intento}" method="post">
+          <div class="input-group">
+            <input type="number" name="intento" placeholder="Número de intento" min="1" th:max="${palabras.size()}"
+              class="form-control" />
+            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>Buscar</button>
+          </div>
+        </form>
+        <div th:if="${palabra != null}">
+          <h2>La palabra es: <span th:each="l : ${palabra}" th:text="${l.letra}"></span></h2>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <script src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+  <script src="@{/webjars/bootstrap/4.1.3/js/bootstrap.min.js}"></script>
 </body>
 
 </html>

@@ -66,15 +66,15 @@
     <div class="container-fluid" style="height: 100%;">
         <th:block th:if="${perder}">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Has perdido!</strong> Si quieres volver a jugar dale al boton de Volver a empezar.
+                <strong>Has perdido!</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                 </button>
             </div>
         </th:block>
         <th:block th:if="${victoria}">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Has perdido!</strong> Si quieres volver a jugar dale al boton de Volver a empezar.
-                <button type="button" class="btn-lose" data-bs-dismiss="alert" aria-label="Close">
+                <strong>Has ganado!</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                 </button>
             </div>
         </th:block>
