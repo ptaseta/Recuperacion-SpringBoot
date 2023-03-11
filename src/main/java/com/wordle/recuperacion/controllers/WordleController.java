@@ -44,6 +44,8 @@ public class WordleController {
         mv.addObject("palabra", wordleService.getPalabra().length); // esto le pasamos al min y max del html
         mv.addObject("pista", wordleRepository.getPista());
         boolean victory = false;
+
+        if (!wordleService.getPalabrasIntentada().isEmpty()) { 
         for (int i = 0; i < wordleService.getPalabrasIntentada()
                 .get(wordleService.getPalabrasIntentada().size() - 1).length; i++) {
             if (wordleService.getPalabrasIntentada().get(wordleService.getPalabrasIntentada().size() - 1)[i]
@@ -54,6 +56,7 @@ public class WordleController {
                 break;
             }
         }
+    }
         if (!victory) {
             if (wordleService.getPalabrasIntentada().size() + 1 > wordleRepository.getIntentos()) {
                 mv.addObject("perder", true);

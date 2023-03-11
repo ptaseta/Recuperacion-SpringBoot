@@ -79,4 +79,6 @@ public class ControllerTests {
         assertEquals(pista, mv.getModel().get("pista"));
         assertEquals(palabrasIntentada, mv.getModel().get("tries_anteriores"));
     }
+
+
 }
